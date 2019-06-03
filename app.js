@@ -26,7 +26,7 @@ app.all("*", function(request, response, next) {
 });
 
 // get 首页数据
-app.get("/api/getIndexData", (request, response) => {
+app.get("/api/index.json", (request, response) => {
   request.statusCode = 200;
   const file = path.join(__dirname, "./api/index.json");
   fs.readFile(file, "utf-8", (err, data) => {
@@ -39,7 +39,7 @@ app.get("/api/getIndexData", (request, response) => {
 });
 
 // get 城市列表数据
-app.get("/api/getCityData", (request, response) => {
+app.get("/api/city.json", (request, response) => {
   request.statusCode = 200;
   const file = path.join(__dirname, "./api/city.json");
   fs.readFile(file, "utf-8", (err, data) => {
@@ -52,7 +52,7 @@ app.get("/api/getCityData", (request, response) => {
 });
 
 // get 详情页数据
-app.get("/api/getDetailData", (request, response) => {
+app.get("/api/detail.json", (request, response) => {
   request.statusCode = 200;
   const file = path.join(__dirname, "./api/detail.json");
   fs.readFile(file, "utf-8", (err, data) => {
@@ -65,6 +65,15 @@ app.get("/api/getDetailData", (request, response) => {
 });
 
 // 配置服务端口
-const server = app.listen(3000, () => {
-  console.log("服务启动成功！打开 http://localhost:3000/");
+
+const hostname = "localhost";
+const port = 8082;
+const server = app.listen(port, hostname, () => {
+  console.log(`服务器运行在 http://${hostname}:${port}`);
 });
+
+// const hostname = '127.0.0.1';
+// const port = 3000;
+// const server = app.listen(port,hostname, () => {
+//   console.log(`服务器运行在 http://${hostname}:${port}`);
+// });
